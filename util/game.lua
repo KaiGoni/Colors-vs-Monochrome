@@ -5,6 +5,7 @@ game = {
       ["health"] = 100,
       ["attackSpeed"] = nil,
       ["description"] = "The Alchemist is a tower that can be used to create mana from other resources. It can also be used to create other resources from mana.",
+      ["count"] = 0,
       ["icon"] = love.graphics.newImage("assets/textures/gui/alchemist.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/alchemist.png")
     },
@@ -13,6 +14,7 @@ game = {
       ["health"] = 100,
       ["attackSpeed"] = nil,
       ["description"] = "test",
+      ["count"] = 0,
       ["icon"] = nil,
       ["sprite"] = nil
     },
@@ -21,6 +23,7 @@ game = {
       ["health"] = 100,
       ["attackSpeed"] = nil,
       ["description"] = "temp",
+      ["count"] = 0,
       ["icon"] = nil,
       ["sprite"] = nil
     },
@@ -29,6 +32,7 @@ game = {
       ["health"] = 100,
       ["attackSpeed"] = 2,
       ["description"] = "The Archer is a tower that can be used to shoot arrows at enemies.",
+      ["count"] = 0,
       ["icon"] = love.graphics.newImage("assets/textures/gui/archer.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/archer.png")
     }
