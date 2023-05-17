@@ -23,7 +23,7 @@ function spawnEnemy(dt)
   for i, enemy in ipairs(spawnList) do
     local enemyStat = game.enemies[enemy.enemyID]
     if enemy.time <= time then
-      table.insert(enemies, {["id"] = enemyStat.id, ["entryNum"] = enemy.enemyID, ["sprite"] = enemyStat.sprite, ["health"] = enemyStat.health, ["attackCooldown"] = enemyStat.attackSpeed, ["row"] = math.random(1,5), ["pos"] = 700})
+      table.insert(enemies, {["id"] = enemyStat.id, ["entryNum"] = enemy.enemyID, ["wave"] = wave, ["sprite"] = enemyStat.sprite, ["health"] = enemyStat.health, ["attackCooldown"] = enemyStat.attackSpeed, ["row"] = math.random(1,5), ["pos"] = 700})
       table.remove(spawnList, i)
     end
   end

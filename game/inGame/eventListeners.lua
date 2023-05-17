@@ -38,9 +38,11 @@ function love.mousepressed(x, y)
           if y > 20 and y < 80 then
             for i, tower in ipairs(game.towers[towerSelection].towers) do
               if x > towerSelection * 90 + (i - 1) * 70 + 10 and x < towerSelection * 90 + i * 70 then
+                if game.towerList[tower.id].count > 0 then
                 selectedTower.id, selectedTower.name, selectedTower.sprite, selectedTower.health, selectedTower.attackSpeed =
                   tower.id,       tower.name,         tower.sprite,         tower.health,         tower.attackSpeed ~= nil and tower.attackSpeed or .5
                 selectedTower.pos = towerSelection * 90 + (i - 1) * 70 + 10
+                end
                 chosenTower = false
               end
             end
@@ -59,8 +61,13 @@ function love.mousepressed(x, y)
     if selectedTower.name ~= "" then -- Place tower
       if hovered.x ~= -1 and hovered.y ~= -1 then
         if gameGrid[hovered.x][hovered.y].towerID == nil then
+          game.towerList[selectedTower.id].count = game.towerList[selectedTower.id].count - 1
           gameGrid[hovered.x][hovered.y].towerID, gameGrid[hovered.x][hovered.y].sprite, gameGrid[hovered.x][hovered.y].health, gameGrid[hovered.x][hovered.y].attackCooldown =
           selectedTower.id,                       selectedTower.sprite,                  selectedTower.health,                  selectedTower.attackSpeed ~= nil and .5 or nil
+          if game.towerList[selectedTower.id].count <= 0 then
+            selectedTower.name = ""
+            selectedTower.id = ""
+          end
         end
       end
     end

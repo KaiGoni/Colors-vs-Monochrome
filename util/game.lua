@@ -5,30 +5,16 @@ game = {
       ["health"] = 100,
       ["attackSpeed"] = nil,
       ["description"] = "The Alchemist is a tower that can be used to create mana from other resources. It can also be used to create other resources from mana.",
+      ["count"] = 0,
       ["icon"] = love.graphics.newImage("assets/textures/gui/alchemist.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/alchemist.png")
-    },
-    ["test"] = {
-      ["name"] = "test",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "test",
-      ["icon"] = nil,
-      ["sprite"] = nil
-    },
-    ["temp"] = {
-      ["name"] = "temp",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "temp",
-      ["icon"] = nil,
-      ["sprite"] = nil
     },
     ["archer"] = {
       ["name"] = "Archer",
       ["health"] = 100,
       ["attackSpeed"] = 2,
       ["description"] = "The Archer is a tower that can be used to shoot arrows at enemies.",
+      ["count"] = 0,
       ["icon"] = love.graphics.newImage("assets/textures/gui/archer.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/archer.png")
     }
@@ -47,22 +33,6 @@ game = {
       ["description"] = "The Alchemist is a tower that can be used to create mana from other resources. It can also be used to create other resources from mana.",
       ["icon"] = love.graphics.newImage("assets/textures/gui/alchemist.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/alchemist.png")
-    }, {
-      ["name"] = "test",
-      ["id"] = "test",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "test",
-      ["icon"] = nil,
-      ["sprite"] = nil
-    }, {
-      ["name"] = "temp",
-      ["id"] = "temp",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "temp",
-      ["icon"] = nil,
-      ["sprite"] = nil
     }}
   }, {
     ["name"] = "Shooter",

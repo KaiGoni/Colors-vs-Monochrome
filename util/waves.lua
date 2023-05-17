@@ -1,5 +1,10 @@
 waves = {
   { -- Wave 1
+    ["reward"] = {
+      ["towers"] = {
+        ["archer"] = 2
+      }
+    },
     ["rounds"] = {
       { -- Round 1
         ["time"] = 30,
@@ -20,6 +25,11 @@ waves = {
     }
   },
   { -- Wave 2
+    ["reward"] = {
+      ["towers"] = {
+        ["archer"] = 2
+      }
+    },
     ["rounds"] = {
       { -- Round 1
         ["time"] = 20,
@@ -40,6 +50,11 @@ waves = {
     }
   },
   { -- Wave 3
+    ["reward"] = {
+      ["towers"] = {
+        ["archer"] = 1
+      }
+    },
     ["rounds"] = {
       { -- Round 1
         ["time"] = 10,
@@ -68,6 +83,11 @@ waves = {
     }
   },
   { -- Wave 4
+    ["reward"] = {
+      ["towers"] = {
+        ["archer"] = 0
+      }
+    },
     ["rounds"] = {
       { -- Round 1
         ["time"] = 10,
