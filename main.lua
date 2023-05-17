@@ -100,5 +100,4 @@ function love.draw()
     love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHovered: "..gameGrid[hovered.x][hovered.y].towerID or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+50 or debug.windowPos.y+40, 300, "right")
     love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHealth: "..gameGrid[hovered.x][hovered.y].health or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+60 or debug.windowPos.y+50, 300, "right")
   end
-  love.graphics.print(enemyCount[1])
 end
