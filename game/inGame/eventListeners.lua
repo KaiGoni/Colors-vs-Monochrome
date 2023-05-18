@@ -1,15 +1,13 @@
 function love.mousepressed(x, y)
-  if not debug.enabled and mousePos.x < 20 and mousePos.y < 20 then
-    debug.enabled = true
-  elseif debug.enabled and mousePos.x < 20 and mousePos.y < 20 then
-    debug.enabled = false
+  if mousePos.x < 20 and mousePos.y < 20 then
+    debug.enabled = not debug.enabled
   end
   if debug.enabled and x > debug.windowPos.x and x < debug.windowPos.x + 300 and y > debug.windowPos.y and y <
     debug.windowPos.y + 20 then -- Drag debug window
     debug.dragging.active = true
     debug.dragging.dx = x - debug.windowPos.x
     debug.dragging.dy = y - debug.windowPos.y
-  else
+  elseif inGame and menu == "game" then -- If did not drag debug menu while game active
     if y > 10 and y < 90 then -- Selecting tower type
       local currentTowerType = towerSelection
       for i, towerType in ipairs(game.towers) do -- Check if mouse is in a tower type's hitbox
@@ -70,6 +68,10 @@ function love.mousepressed(x, y)
           end
         end
       end
+    end
+  elseif menu == "start" then -- Did not drag debug menu in start menu
+    if x > 50 and x < 250 and y > 200 and y < 240 then
+      startGame()
     end
   end
 end

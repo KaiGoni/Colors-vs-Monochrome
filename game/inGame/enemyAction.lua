@@ -24,6 +24,8 @@ function enemyAction(dt)
       enemy.pos = enemy.pos - dt*game.enemies[enemy.entryNum].speed
     elseif enemyPos.x < 1 then -- Lose(temperary deletes enemy)
       table.remove(enemies, i)
+      menu = "lose"
+      paused = true
     end
   end
 end

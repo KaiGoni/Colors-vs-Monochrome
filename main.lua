@@ -5,8 +5,17 @@ function love.keypressed(key, scancode, isrepeat)
 end
 
 function love.load()
+  -- Define game functions
+  game = require("util/game")
+  waves = require("util/waves")
   debug = {["enabled"] = false, ["windowPos"] = {["x"] = 0, ["y"] = 0}, ["dragging"] = {["active"] = false, ["dx"] = 0, ["dy"] = 0}}
   math.randomseed(os.time())
+  inGame = false
+  menu = "start"
+  paused = true
+  startGame = require("game/menus/startGame")
+  drawStartMenu = require("game/menus/drawStartMenu")
+  drawLoseMenu = require("game/menus/drawLoseMenu")
   love.filesystem.load("game/inGame/eventListeners.lua")()
   drawGrid = require("game/inGame/drawGrid")
   showTowerSelector = require("game/inGame/towerSelector")
@@ -16,43 +25,12 @@ function love.load()
   drawEnemy = require("game/inGame/drawEnemy")
   towerActions = require("game/inGame/towerActions")
   moveProjectile = require("game/inGame/moveProjectile")
-  game = require("util/game")
-  waves = require("util/waves")
-  time = 0
-  wave = 0
-  round = 1
-  nextRound = 3
   mousePos = {["x"] = 0, ["y"] = 0}
   hovered = {["x"] = -1, ["y"] = -1}
-  selectedTower = {["name"] = "", ["id"] = "", ["pos"] = nil, ["sprite"] = ""}
-  towers = {}
-  projectiles = {} --type, row, pos, power, speed
-  game.towerList.archer.count = 5
-  towerSelection = "Main"
-  spawnList = {} -- time, enemyID
-  enemies = {} -- id, entryNum, wave, sprite, health, attackCooldown, row, pos
-  gameGrid = {} --towerId, sprite, health, attackCooldown
-  for x=1,9 do
-    gameGrid[x] = {}
-    for y=1,5 do
-      gameGrid[x][y] = {["towerID"] = nil,["sprite"] = nil,["health"] = 0}
-    end
-  end
-  enemyCount = {}
-  for i, wave in ipairs(waves) do
-    local totalEnemies = 0
-    for j, round in ipairs(wave.rounds) do
-      for k, enemy in pairs(round.enemies) do
-        totalEnemies = totalEnemies + enemy
-      end
-    end
-    table.insert(enemyCount, totalEnemies)
-  end
   nullTexture = love.graphics.newImage("assets/textures/gui/null.png")
 end
 
 function love.update(dt)
-  time = time + dt
   mousePos.x, mousePos.y = love.mouse.getPosition()
   if debug.dragging.active then
     debug.windowPos.x = love.mouse.getX() - debug.dragging.dx
@@ -68,18 +46,27 @@ function love.update(dt)
   elseif debug.windowPos.y > love.graphics.getHeight() - 120 then
     debug.windowPos.y = love.graphics.getHeight() - 120
   end
-
-  spawnEnemy(dt < 1/60 and dt or 1/60)
-  towerActions(dt < 1/60 and dt or 1/60)
-  moveProjectile(dt < 1/60 and dt or 1/60)
+  if inGame and paused == false then
+    time = time + dt
+    spawnEnemy(dt < 1/60 and dt or 1/60)
+    towerActions(dt < 1/60 and dt or 1/60)
+    moveProjectile(dt < 1/60 and dt or 1/60)
+  end
 end
 
 function love.draw()
-  drawGrid(mousePos)
-  showTowerSelector(towerSelection)
-  drawTowers(towers)
-  drawEnemy()
-  drawProjectile()
+  if inGame then
+    drawGrid(mousePos)
+    showTowerSelector(towerSelection)
+    drawTowers(towers)
+    drawEnemy()
+    drawProjectile()
+  end
+  if menu == "start" then
+    drawStartMenu()
+  elseif menu == "lose" then
+    drawLoseMenu()
+  end
   if debug.enabled then -- Debug Menu
     love.graphics.setColor(love.math.colorFromBytes(50,50,50))
     love.graphics.rectangle("fill", debug.windowPos.x, debug.windowPos.y, 300, 20)
