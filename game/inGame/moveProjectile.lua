@@ -7,8 +7,10 @@ function moveProjectile(dt)
         table.remove(projectiles, i)
         if enemies[j].health <= 0 then
           enemyCount[enemy.wave] = enemyCount[enemy.wave] - 1
-          if enemyCount[enemy.wave] == 0 then
-            for i, tower in ipairs(game.towerList) ----------------------------------
+          if enemyCount[enemy.wave] == 0 then -- Defeat wave
+            for k, tower in pairs(waves[enemy.wave].reward.towers) do
+              game.towerList[k].count = game.towerList[k].count + tower
+            end
           end
           table.remove(enemies, j)
         end

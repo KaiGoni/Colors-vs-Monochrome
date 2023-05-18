@@ -9,24 +9,6 @@ game = {
       ["icon"] = love.graphics.newImage("assets/textures/gui/alchemist.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/alchemist.png")
     },
-    ["test"] = {
-      ["name"] = "test",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "test",
-      ["count"] = 0,
-      ["icon"] = nil,
-      ["sprite"] = nil
-    },
-    ["temp"] = {
-      ["name"] = "temp",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "temp",
-      ["count"] = 0,
-      ["icon"] = nil,
-      ["sprite"] = nil
-    },
     ["archer"] = {
       ["name"] = "Archer",
       ["health"] = 100,
@@ -51,22 +33,6 @@ game = {
       ["description"] = "The Alchemist is a tower that can be used to create mana from other resources. It can also be used to create other resources from mana.",
       ["icon"] = love.graphics.newImage("assets/textures/gui/alchemist.png"),
       ["sprite"] = love.graphics.newImage("assets/textures/colors/alchemist.png")
-    }, {
-      ["name"] = "test",
-      ["id"] = "test",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "test",
-      ["icon"] = nil,
-      ["sprite"] = nil
-    }, {
-      ["name"] = "temp",
-      ["id"] = "temp",
-      ["health"] = 100,
-      ["attackSpeed"] = nil,
-      ["description"] = "temp",
-      ["icon"] = nil,
-      ["sprite"] = nil
     }}
   }, {
     ["name"] = "Shooter",
