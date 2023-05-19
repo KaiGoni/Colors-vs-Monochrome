@@ -9,10 +9,15 @@ function love.load()
   game = require("util/game")
   waves = require("util/waves")
   debug = {["enabled"] = false, ["windowPos"] = {["x"] = 0, ["y"] = 0}, ["dragging"] = {["active"] = false, ["dx"] = 0, ["dy"] = 0}}
+  showDebugMenu = true
+  previousDebugPos = {}
   math.randomseed(os.time())
   inGame = false
   menu = "start"
   paused = true
+  time = 0
+  wave = 0
+  selectedTower = {["id"] = "", ["name"] = "", ["sprite"] = "", ["health"] = 0, ["attackSpeed"] = 0, ["pos"] = 0}
   startGame = require("game/menus/startGame")
   drawStartMenu = require("game/menus/drawStartMenu")
   drawLoseMenu = require("game/menus/drawLoseMenu")
@@ -46,6 +51,7 @@ function love.update(dt)
   elseif debug.windowPos.y > love.graphics.getHeight() - 120 then
     debug.windowPos.y = love.graphics.getHeight() - 120
   end
+
   if inGame and paused == false then
     time = time + dt
     spawnEnemy(dt < 1/60 and dt or 1/60)
@@ -70,21 +76,22 @@ function love.draw()
   if debug.enabled then -- Debug Menu
     love.graphics.setColor(love.math.colorFromBytes(50,50,50))
     love.graphics.rectangle("fill", debug.windowPos.x, debug.windowPos.y, 300, 20)
-    love.graphics.setColor(love.math.colorFromBytes(30,30,30))
-    love.graphics.rectangle("fill", debug.windowPos.x, debug.windowPos.y+20, 300, 100)
     love.graphics.setColor(love.math.colorFromBytes(200,0,0))
     love.graphics.print("Debug Menu", debug.windowPos.x + 3, debug.windowPos.y+3)
-    love.graphics.setColor(love.math.colorFromBytes(128,128,128)) --starts showing debug info here
-
-    love.graphics.print("FPS: "..love.timer.getFPS(), debug.windowPos.x, debug.windowPos.y+20)
-    love.graphics.print("Time: "..time, debug.windowPos.x, debug.windowPos.y+30)
-    love.graphics.print("Wave: "..wave, debug.windowPos.x, debug.windowPos.y+40)
-    love.graphics.print("MousePos: "..mousePos.x..", "..mousePos.y, debug.windowPos.x, debug.windowPos.y+50)
-    love.graphics.print(hovered.x ~= -1 and "BlockHovered:"..hovered.x..", "..hovered.y or "", debug.windowPos.x, debug.windowPos.y+60)
-    -- right side
-    love.graphics.printf("SelectedTower: "..(selectedTower.id ~= "" and selectedTower.id or "None"), debug.windowPos.x, debug.windowPos.y+20, 300, "right")
-    love.graphics.printf(selectedTower.id ~= "" and "Type: "..game.towers[towerSelection].id or "", debug.windowPos.x, debug.windowPos.y+30, 300, "right")
-    love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHovered: "..gameGrid[hovered.x][hovered.y].towerID or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+50 or debug.windowPos.y+40, 300, "right")
-    love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHealth: "..gameGrid[hovered.x][hovered.y].health or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+60 or debug.windowPos.y+50, 300, "right")
+    if showDebugMenu then
+      love.graphics.setColor(love.math.colorFromBytes(30,30,30,200))
+      love.graphics.rectangle("fill", debug.windowPos.x, debug.windowPos.y+20, 300, 100) --starts showing debug info here
+      love.graphics.setColor(love.math.colorFromBytes(128,128,128))
+      love.graphics.print("FPS: "..love.timer.getFPS(), debug.windowPos.x, debug.windowPos.y+20)
+      love.graphics.print("Time: "..time, debug.windowPos.x, debug.windowPos.y+30)
+      love.graphics.print("Wave: "..wave, debug.windowPos.x, debug.windowPos.y+40)
+      love.graphics.print("MousePos: "..mousePos.x..", "..mousePos.y, debug.windowPos.x, debug.windowPos.y+50)
+      love.graphics.print(hovered.x ~= -1 and "BlockHovered:"..hovered.x..", "..hovered.y or "", debug.windowPos.x, debug.windowPos.y+60)
+      -- right side
+      love.graphics.printf("SelectedTower: "..(selectedTower.id ~= "" and selectedTower.id or "None"), debug.windowPos.x, debug.windowPos.y+20, 300, "right")
+      love.graphics.printf(selectedTower.id ~= "" and "Type: "..game.towers[towerSelection].id or "", debug.windowPos.x, debug.windowPos.y+30, 300, "right")
+      love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHovered: "..gameGrid[hovered.x][hovered.y].towerID or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+50 or debug.windowPos.y+40, 300, "right")
+      love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHealth: "..gameGrid[hovered.x][hovered.y].health or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+60 or debug.windowPos.y+50, 300, "right")
+    end
   end
 end

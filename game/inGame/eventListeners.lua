@@ -4,6 +4,7 @@ function love.mousepressed(x, y)
   end
   if debug.enabled and x > debug.windowPos.x and x < debug.windowPos.x + 300 and y > debug.windowPos.y and y <
     debug.windowPos.y + 20 then -- Drag debug window
+    previousDebugPos = {["x"] = debug.windowPos.x, ["y"] = debug.windowPos.y}
     debug.dragging.active = true
     debug.dragging.dx = x - debug.windowPos.x
     debug.dragging.dy = y - debug.windowPos.y
@@ -25,8 +26,7 @@ function love.mousepressed(x, y)
             elseif i < towerSelection then
               game.towers[i].guiHitbox = {(i - 1) * 90 + 10, i * 90}
             else
-              game.towers[i].guiHitbox = {(i - 1) * 90 + #game.towers[towerSelection].towers * 70 + 20,
-                                          i * 90 + #game.towers[towerSelection].towers * 70}
+              game.towers[i].guiHitbox = {(i - 1) * 90 + #game.towers[towerSelection].towers * 70 + 20,i * 90 + #game.towers[towerSelection].towers * 70}
             end
           end
         end
@@ -70,14 +70,24 @@ function love.mousepressed(x, y)
       end
     end
   elseif menu == "start" then -- Did not drag debug menu in start menu
-    if x > 50 and x < 250 and y > 200 and y < 240 then
+    if x > 100 and x < 300 and y > 300 and y < 340 then
       startGame()
+    end
+  elseif menu == "lose" then -- Did not drag debug menu in lose menu
+    if x > 220 and x < 320 and y > 280 and y < 320 then
+      startGame()
+    elseif x > 340 and x < 440 and y > 280 and y < 320 then
+      inGame = false
+      menu = "start"
     end
   end
 end
 
 function love.mousereleased(x, y, button)
   if button == 1 then
+    if previousDebugPos.x == debug.windowPos.x and previousDebugPos.y == debug.windowPos.y and debug.dragging.active then
+      showDebugMenu = not showDebugMenu
+    end
     debug.dragging.active = false
   end
 end

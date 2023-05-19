@@ -31,12 +31,14 @@ function drawGrid(mousePos)
   end
   
   -- Draw hovered block
-  hovered = getHoveredBlock(mousePos)
-  love.graphics.setColor(love.math.colorFromBytes(255,255,255,128))
-  if hovered.y % 2 == 0 then
-    love.graphics.polygon("fill", 40+(hovered.x-1)*2*math.sqrt(1200),40+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),120+60*hovered.y, 40-math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40-math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y)
-  else
-    love.graphics.polygon("fill", 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),40+60*hovered.y, 40+math.sqrt(1200)*2+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y, 40+math.sqrt(1200)*2+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),120+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y)
+  if menu == "game" and not (mousePos.x > debug.windowPos.x and mousePos.x < debug.windowPos.x + 300 and mousePos.y > debug.windowPos.y and mousePos.y < debug.windowPos.y + 20) then
+    hovered = getHoveredBlock(mousePos)
+    love.graphics.setColor(love.math.colorFromBytes(255,255,255,128))
+    if hovered.y % 2 == 0 then
+      love.graphics.polygon("fill", 40+(hovered.x-1)*2*math.sqrt(1200),40+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),120+60*hovered.y, 40-math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40-math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y)
+    else
+      love.graphics.polygon("fill", 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),40+60*hovered.y, 40+math.sqrt(1200)*2+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y, 40+math.sqrt(1200)*2+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+math.sqrt(1200)+(hovered.x-1)*2*math.sqrt(1200),120+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),100+60*hovered.y, 40+(hovered.x-1)*2*math.sqrt(1200),60+60*hovered.y)
+    end
   end
 end
 
