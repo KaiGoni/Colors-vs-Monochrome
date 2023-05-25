@@ -21,6 +21,7 @@ function love.load()
   startGame = require("game/menus/startGame")
   drawStartMenu = require("game/menus/drawStartMenu")
   drawLoseMenu = require("game/menus/drawLoseMenu")
+  drawWinMenu = require("game/menus/drawWinMenu")
   love.filesystem.load("game/inGame/eventListeners.lua")()
   drawGrid = require("game/inGame/drawGrid")
   showTowerSelector = require("game/inGame/towerSelector")
@@ -72,6 +73,8 @@ function love.draw()
     drawStartMenu()
   elseif menu == "lose" then
     drawLoseMenu()
+  elseif menu == "win" then
+    drawWinMenu()
   end
   if debug.enabled then -- Debug Menu
     love.graphics.setColor(love.math.colorFromBytes(50,50,50))
