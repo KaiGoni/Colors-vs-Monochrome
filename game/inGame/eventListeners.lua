@@ -80,6 +80,20 @@ function love.mousepressed(x, y)
       inGame = false
       menu = "start"
     end
+  elseif menu == "win" then -- Did not drag debug menu in win menu
+    if x > 220 and x < 320 and y > 280 and y < 320 then
+      inGame = false
+      menu = "start"
+    elseif x > 340 and x < 440 and y > 280 and y < 320 then
+      -- TODO: infinite mode
+      wave = "Endless"
+      timeTillNextEnemy = 10
+      deltaSummonTime = 10
+      slimeChance = 1
+      clayChance = 0
+      paused = false
+      menu = "game"
+    end
   end
 end
 

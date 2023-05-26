@@ -3,9 +3,11 @@ function startGame()
   menu = "game"
   paused = false
   time = 0
+  waveDelay = 20
   wave = 0
   round = 1
   nextRound = 3
+  endlessMode = false
   selectedTower = {["name"] = "", ["id"] = "", ["pos"] = nil, ["sprite"] = ""}
   towers = {}
   projectiles = {} --type, row, pos, power, speed

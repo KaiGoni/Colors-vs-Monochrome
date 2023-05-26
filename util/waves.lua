@@ -8,17 +8,10 @@ waves = {
     ["rounds"] = {
       { -- Round 1
         ["time"] = 30,
+        ["delay"] = 0,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 8,
-          ["clay"] = 0
-        }
-      },
-      { -- Round 2
-        ["time"] = 10,
-        ["spread"] = "random",
-        ["enemies"] = {
-          ["slime"] = 0,
           ["clay"] = 0
         }
       }
@@ -33,17 +26,10 @@ waves = {
     ["rounds"] = {
       { -- Round 1
         ["time"] = 20,
+        ["delay"] = 0,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 10,
-          ["clay"] = 0
-        }
-      },
-      { -- Round 2
-        ["time"] = 10,
-        ["spread"] = "random",
-        ["enemies"] = {
-          ["slime"] = 0,
           ["clay"] = 0
         }
       }
@@ -58,6 +44,7 @@ waves = {
     ["rounds"] = {
       { -- Round 1
         ["time"] = 10,
+        ["delay"] = 0,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 5,
@@ -66,18 +53,11 @@ waves = {
       },
       { -- Round 2
         ["time"] = 20,
+        ["delay"] = 0,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 0,
           ["clay"] = 3
-        }
-      },
-      { -- Round 3
-        ["time"] = 10,
-        ["spread"] = "random",
-        ["enemies"] = {
-          ["slime"] = 0,
-          ["clay"] = 0
         }
       }
     }
@@ -91,6 +71,7 @@ waves = {
     ["rounds"] = {
       { -- Round 1
         ["time"] = 10,
+        ["delay"] = 5,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 10,
@@ -99,6 +80,7 @@ waves = {
       },
       { -- Round 2
         ["time"] = 20,
+        ["delay"] = 0,
         ["spread"] = "random",
         ["enemies"] = {
           ["slime"] = 0,
@@ -106,7 +88,7 @@ waves = {
         }
       }
     }
-  },
+  }
 }
 
 return waves

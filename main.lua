@@ -54,7 +54,7 @@ function love.update(dt)
   end
 
   if inGame and paused == false then
-    time = time + dt
+    time = time + (dt < 1/60 and dt or 1/60)
     spawnEnemy(dt < 1/60 and dt or 1/60)
     towerActions(dt < 1/60 and dt or 1/60)
     moveProjectile(dt < 1/60 and dt or 1/60)
