@@ -15,11 +15,15 @@ function spawnEnemy(dt)
       
       -- Defines new set of enemies
       if wave <= #waves then
-        for i = 1, waves[wave].rounds[round].enemies.slime do
-          table.insert(spawnList, {["time"] = math.random() * waves[wave].rounds[round].time + nextRound, ["enemyID"] = 1})
-        end
-        for i = 1, waves[wave].rounds[round].enemies.clay do
-          table.insert(spawnList, {["time"] = math.random() * waves[wave].rounds[round].time + nextRound, ["enemyID"] = 2})
+        for enemyID, enemyCount in pairs(waves[wave].rounds[round].enemies) do
+          for i = 1, #game.enemies do
+            if game.enemies[i].id == enemyID then
+              enemyNum = i
+            end
+          end
+          for i = 1, enemyCount do
+            table.insert(spawnList, {["time"] = math.random() * waves[wave].rounds[round].time + nextRound, ["enemyID"] = enemyNum})
+          end
         end
         nextRound = round == #waves[wave].rounds and nextRound + waves[wave].rounds[round].time + waves[wave].rounds[round].delay + waveDelay or nextRound + waves[wave].rounds[round].time + waves[wave].rounds[round].delay
       end

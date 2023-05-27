@@ -37,6 +37,12 @@ function showTowerSelector(towerSelection)
           else
             love.graphics.draw(nullTexture, (i-1)*90+j*70+40, 30,0,2,2)
           end
+          if game.towerList[tower.id].count ~= 0 then
+            love.graphics.setColor(love.math.colorFromBytes(255,255,255))
+          else
+            love.graphics.setColor(love.math.colorFromBytes(255,0,0))
+          end
+          love.graphics.printf(game.towerList[tower.id].count,(i-1)*90+j*70+30,70,60,"right")
         end
       end
     end

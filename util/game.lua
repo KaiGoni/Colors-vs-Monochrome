@@ -71,6 +71,17 @@ game = {
       ["strength"] = 15,
       ["attackSpeed"] = 2,
       ["icon"] = nil,
+      ["sprite"] = love.graphics.newImage("assets/textures/monochromes/clay.png")
+    },
+    {
+      ["name"] = "Sand",
+      ["id"] = "sand",
+      ["entryNum"] = 3,
+      ["health"] = 60,
+      ["speed"] = 50,
+      ["strength"] = 10,
+      ["attackSpeed"] = 3,
+      ["icon"] = nil,
       ["sprite"] = nil
     }
   }

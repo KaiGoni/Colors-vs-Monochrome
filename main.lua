@@ -16,6 +16,7 @@ function love.load()
   menu = "start"
   paused = true
   time = 0
+  waveEnd = 0
   wave = 0
   selectedTower = {["id"] = "", ["name"] = "", ["sprite"] = "", ["health"] = 0, ["attackSpeed"] = 0, ["pos"] = 0}
   startGame = require("game/menus/startGame")
@@ -24,6 +25,7 @@ function love.load()
   drawWinMenu = require("game/menus/drawWinMenu")
   love.filesystem.load("game/inGame/eventListeners.lua")()
   drawGrid = require("game/inGame/drawGrid")
+  newWaveAnimation = require("game/inGame/newWaveAnimation")
   showTowerSelector = require("game/inGame/towerSelector")
   drawTowers = require("game/inGame/drawTowers")
   drawProjectile = require("game/inGame/drawProjectile")
@@ -68,6 +70,7 @@ function love.draw()
     drawTowers(towers)
     drawEnemy()
     drawProjectile()
+    newWaveAnimation()
   end
   if menu == "start" then
     drawStartMenu()
@@ -95,6 +98,11 @@ function love.draw()
       love.graphics.printf(selectedTower.id ~= "" and "Type: "..game.towers[towerSelection].id or "", debug.windowPos.x, debug.windowPos.y+30, 300, "right")
       love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHovered: "..gameGrid[hovered.x][hovered.y].towerID or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+50 or debug.windowPos.y+40, 300, "right")
       love.graphics.printf(hovered.x ~= -1 and (gameGrid[hovered.x][hovered.y].towerID ~= nil and "TowerHealth: "..gameGrid[hovered.x][hovered.y].health or "") or "", debug.windowPos.x, selectedTower.id ~= "" and debug.windowPos.y+60 or debug.windowPos.y+50, 300, "right")
+    end
+  end
+  if spawnList then
+    if #spawnList > 0 then
+      love.graphics.print(spawnList[1].enemyID)
     end
   end
 end

@@ -6,7 +6,8 @@ function startGame()
   waveDelay = 20
   wave = 0
   round = 1
-  nextRound = 3
+  nextRound = 10
+  waveEnd = 10
   endlessMode = false
   selectedTower = {["name"] = "", ["id"] = "", ["pos"] = nil, ["sprite"] = ""}
   towers = {}
